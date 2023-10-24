@@ -1,0 +1,29 @@
+# docker-compose.yml
+
+version: "3.8"
+
+services:
+  web:
+    build: .
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn app.main:app --host 0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    environment:
+      - DATABASE_URL=postgresql://fastapi_lgrn:fastapi_lgrn@db:5432/fastapi_lgrn
+    depends_on:
+      - db
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=fastapi_lgrn
+      - POSTGRES_PASSWORD=fastapi_lgrn
+      - POSTGRES_DB=fastapi_lgrn
+
+volumes:
+  postgres_data:
