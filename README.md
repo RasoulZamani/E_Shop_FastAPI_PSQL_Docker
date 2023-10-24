@@ -34,7 +34,7 @@ Notice in this case it use sqlite as a database.
 
 ### Option Two: Docker and Postgresql
 
-Just run:
+Go to the `Dockerized_FastAPI_Postgress` directory that contains Dockerfile and docker-compose, then just run:
 `sudo docker compose up -d --build`
 It will install requirements and create image from `Dockerfile` for app, then based on `docker-compose.yml`, create service that has two container: web (fastAPI app) and db (psql database).
 
