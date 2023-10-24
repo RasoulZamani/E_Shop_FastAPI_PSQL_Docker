@@ -6,7 +6,7 @@ from db import  Base, engine
 from routers.users import user_router
 from routers.products import product_router
 
-# instantiaye fastAPI app and adding routers
+# instantiate fastAPI app and adding routers
 app = FastAPI()
 app.include_router(user_router, prefix="/users", tags=["User"])
 app.include_router(product_router, prefix="/products", tags=["Product"])
