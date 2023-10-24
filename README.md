@@ -46,18 +46,18 @@ after installing and running , go to the browser and type this url:
 `http://localhost:8000/docs`
 for access to automated documentation of FastAPI by swagger. You will see something like this:
 
-![screen shot od browser at http://localhost:8000/docs](https://github.com/RasoulZamani/E_Shop_FastAPI_PSQL_Docker/tree/main/doc_resource/docs_swagger1.PNG)
+![screen shot od browser at http://localhost:8000/docs] (https://github.com/RasoulZamani/E_Shop_FastAPI_PSQL_Docker/tree/main/doc_resource/docs_swagger1.PNG)
 
 In the top of page you can see customized information of app like title, version and short description. Then all endpoints are listed bellow. by clicking on first one, i.e. `POST /users/register` and then try it out, you can send data for registeration. please register as a admin in order to access to create products later.(if you using app.db from this repo -in the NoDocker manner- then user admin by password=admin is already exists.)
 
-![screen shot of register endpoint](<(https://github.com/RasoulZamani/E_Shop_FastAPI_PSQL_Docker/tree/main)/doc_resource/docs_swagger_register_user.PNG>)
+! [screen shot of register endpoint](<(https://github.com/RasoulZamani/E_Shop_FastAPI_PSQL_Docker/tree/main)/doc_resource/docs_swagger_register_user.PNG>)
 
 Authorize button (in the top-right-side of page) is for login. for palcing order you must authorize, otherwise you only can see products (you should crrate products first!).
 Notice: Auth2 is a background of login in this app, and it get username and password. but in a e-shop this is not common to enforce users to have unique username. so you should enter your email for authorizathin at username field. later, frontend team can show this fild as a email.
 
 in Product endpoints, you can do CRUD for products. any body can see products. but for adding, deleting or updating you should login as an admin.
 
-![screenshot of prodcts endpoint](https://github.com/RasoulZamani/E_Shop_FastAPI_PSQL_Docker/tree/main/doc_resource/docs_swagger_products.PNG)
+! [screenshot of prodcts endpoint] (https://github.com/RasoulZamani/E_Shop_FastAPI_PSQL_Docker/tree/main/doc_resource/docs_swagger_products.PNG)
 
 Besides, for automated testing, in the /app directory after installing pytest, type `pytest` and some tests will be pass. more tests can be added based on feuture situations.
 
