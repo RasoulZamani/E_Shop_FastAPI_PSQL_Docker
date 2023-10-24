@@ -3,21 +3,22 @@
 ## About
 
 This code is implementation of simple e-shop as a task for Lagrange Co. in **FastAPI** framework.
-for ORM it use **SQLAlchemy**, and database is **postgresql**.
-more information of task can be seen in [task_deceleratiom](./doc_resource/task_deceleration.pdf)
+
+For ORM it uses **SQLAlchemy**, and database is **postgresql**.
+More information of task can be seen in [task_deceleratiom](./doc_resource/task_deceleration.pdf)
 
 ---
 
 ## Features
 
 In this app three models created in database:**Users, Product and Order**. You can see them in the app/db_models.py file.
-Each order contsind foreign key to user and products to implementing 1-to-many relationship between them.
-**pydantic schemas** used for validate inut and output of endpointd properly. these schemas can be found in app/schema_models.py file.
+Order model contains foreign keys to user and products to implementing 1-to-many relationship between them.
+**pydantic schemas** used for validate input and output of endpoints properly. These schemas can be found in app/schema_models.py file.
 
 ## Code Structure
 
 For better organization of the code, cruds (create, read, update and delete) related to each model was written in seprated file and gather together in `app/cruds` directory. Endpoints in similar way are in `app/routers`.
-Essential authentication functions are in `app/security.py` and database scripts written in `app/db.py` file.
+Essential authentication functions are in `app/security.py` and database scripts were written in `app/db.py` file.
 
 ---
 
@@ -25,9 +26,9 @@ Essential authentication functions are in `app/security.py` and database scripts
 
 After cloning this repository you have two options:
 
-### Option One:
+### Option One: venv
 
-Go to the `NoDocker` directory and you can use virtual environment and install neccesary pakages by:
+Go to the `NoDocker` directory and you can use virtual environment and install neccessary packages by:
 `pip install -r requirements.txt`
 Finally run app: `python main.py`.
 Notice in this case it use sqlite as a database.
@@ -35,37 +36,42 @@ Notice in this case it use sqlite as a database.
 ### Option Two: Docker and Postgresql
 
 Go to the `Dockerized_FastAPI_Postgress` directory that contains Dockerfile and docker-compose, then just run:
+
 `sudo docker compose up -d --build`
-It will install requirements and create image from `Dockerfile` for app, then based on `docker-compose.yml`, create service that has two container: web (fastAPI app) and db (psql database).
+
+It will install requirements and create image from `Dockerfile` for app, then based on `docker-compose.yml`, create two services: web (fastAPI app) and db (psql database).
 
 ---
 
 ## See Results
 
-after installing and running , go to the browser and type this url:
+After installing and running , go to the browser and type this url:
+
 `http://localhost:8000/docs`
-for access to automated documentation of FastAPI by swagger. You will see something like this:
+
+For access to automated documentation of FastAPI by swagger. You will see something like this:
 
 ![screen shot od browser at http://localhost:8000/docs](./doc_resource/docs_swagger1.PNG)
 
-In the top of page you can see customized information of app like title, version and short description. Then all endpoints are listed bellow. by clicking on first one, i.e. `POST /users/register` and then try it out, you can send data for registeration. please register as a admin in order to access to create products later.(if you using app.db from this repo -in the NoDocker manner- then user admin by password=admin is already exists.)
+In the top of page you can see customized information of app like title, version and short description. Then all endpoints are listed bellow. by clicking on first one, i.e. `POST /users/register` and then try it out, you can send data for registeration. Please register as a admin in order to access to create products later.(if you using app.db from this repo -in the NoDocker manner- then user admin by password=admin is already exists.)
 
 ![screen shot of register endpoint](doc_resource/docs_swagger_register_user.PNG)
 
-Authorize button (in the top-right-side of page) is for login. for palcing order you must authorize, otherwise you only can see products (you should crrate products first!).
+Authorize button (in the top-right-side of page) is for login. for palcing order, you must authorize, otherwise you only can see products (you should crrate products first!).
+
 Notice: Auth2 is a background of login in this app, and it get username and password. but in a e-shop this is not common to enforce users to have unique username. so you should enter your email for authorizathin at username field. later, frontend team can show this fild as a email.
 
-in Product endpoints, you can do CRUD for products. any body can see products. but for adding, deleting or updating you should login as an admin.
+in Product endpoints, you can do CRUD for products. Any body can see products, but for adding, deleting or updating you should login as an admin.
 
 ![screenshot of prodcts endpoint](doc_resource/docs_swagger_products.PNG)
 
-Besides, for automated testing, in the /app directory after installing pytest, type `pytest` and some tests will be pass. more tests can be added based on feuture situations.
+Besides, for automated testing, in the /app directory after installing pytest, type `pytest` and some tests will be pass. more tests can be added in test_app.py based on feuture situations.
 
 ---
 
 # Dockerization
 
-In `Dockerized_FastAPI_Postgress` directory you can see Dockerfile for creatinf image of FastAPI app:
+In `Dockerized_FastAPI_Postgress` directory you can see Dockerfile for creating image of FastAPI app:
 
 ```
 # Dockerfile
@@ -124,13 +130,14 @@ volumes:
 ```
 
 You can set your desired environment variable and ports.
+
 As it was said, for runing this app by docker just typy in the root of project:
 `sudo docker compose up -t --build`
-if there was a problem you can see logs of servece by
+if there was a problem you can see logs of serviece by
 `sudo docker compose logs`
 and logs of any related container in similar way to debug the issue.
 
-For deployment by docker swarm and teraefik (as a web server and reverse proxy) the Dockerfile.prod and docker-compose.prod.yml is provided. but they are not tested and maybe need more consideration.
+For deployment by docker swarm and teraefik (as a web server and reverse proxy) the Dockerfile.prod and docker-compose.prod.yml is provided. However, they are not tested and maybe need more consideration.
 
 ---
 
